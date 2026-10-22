@@ -1,0 +1,34 @@
+# Тапсырмалар менеджері (To-Do App)
+
+PHP және MySQL көмегімен әзірленген веб-қосымша (жеке жоба).
+
+## Дерекқордың ER-диаграммасы
+
+Бұл жоба 3 негізгі кестеден (`users`, `categories`, `tasks`) тұрады. Олардың өзара байланысы төмендегідей:
+
+```mermaid
+erDiagram
+    users ||--o{ tasks : "жасайды"
+    categories ||--o{ tasks : "тіркеледі"
+
+    users {
+        int id PK "Бірегей ID"
+        varchar username "Қолданушы аты"
+        varchar email "Email"
+        varchar password "Құпия сөз"
+        timestamp created_at "Уақыты"
+    }
+
+    categories {
+        int id PK "Бірегей ID"
+        varchar name "Категория аты"
+    }
+
+    tasks {
+        int id PK "Бірегей ID"
+        int user_id FK "Қолданушы ID"
+        int category_id FK "Категория ID"
+        varchar title "Тапсырма"
+        enum status "Күйі"
+        timestamp created_at "Уақыты"
+    }
