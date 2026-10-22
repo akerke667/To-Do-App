@@ -1,0 +1,25 @@
+erDiagram
+    users ||--o{ tasks : "жасайды (1:N)"
+    categories ||--o{ tasks : "тіркеледі (1:N)"
+
+    users {
+        int id PK "Бірегей ID"
+        varchar username "Қолданушы аты"
+        varchar email "Электронды пошта"
+        varchar password "Құпия сөз (Hash)"
+        timestamp created_at "Тіркелген уақыты"
+    }
+
+    categories {
+        int id PK "Бірегей ID"
+        varchar name "Категория атауы (Жеке, Оқу, Жұмыс)"
+    }
+
+    tasks {
+        int id PK "Бірегей ID"
+        int user_id FK "Қолданушы ID-і"
+        int category_id FK "Категория ID-і"
+        varchar title "Тапсырма мәтіні"
+        enum status "Күйі (Орындалуда / Орындалды)"
+        timestamp created_at "Құрылған уақыты"
+    }
